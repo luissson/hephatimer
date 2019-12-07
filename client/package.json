@@ -10,9 +10,10 @@
     "mongoose": "^5.7.8",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-helmet": "^5.2.1",
     "react-scripts": "3.2.0"
   },
-  "proxy":"http://localhost:9000/",
+  "proxy": "http://localhost:9000/",
   "scripts": {
     "start": "react-scripts start"
   },

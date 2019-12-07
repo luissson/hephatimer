@@ -5,6 +5,7 @@ import {SessionForm} from './components/sessionForm.js'
 import {SessionUI} from './components/sessionUI.js'
 import {TimerUI} from './components/timerUI.js'
 import { Stopwatch } from './data/stopwatch';
+import { Helmet } from 'react-helmet'
 
 
 class App extends Component {
@@ -125,18 +126,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <>
+        <Helmet>
+          <title>Hephatimer</title>
+        </Helmet>
 
-        <SessionForm 
-            data={this.state.sessions}
-            onSubmit={this.handleSessionFormSubmit}
-          />
+        <div className="App">
 
-        {this.showSessionUI()}
+          <SessionForm 
+              data={this.state.sessions}
+              onSubmit={this.handleSessionFormSubmit}
+            />
 
-        {this.showTimerUI()}
+          {this.showSessionUI()}
 
-      </div>
+          {this.showTimerUI()}
+
+        </div>
+
+      </>
     );
   }
 }
