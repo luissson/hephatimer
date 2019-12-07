@@ -1,0 +1,53 @@
+body {
+  background-color: #c2c2c2;
+}
+
+.btn, .btn:hover, .btn:active, .btn:visited {
+  background-color: rgb(153, 182, 141) !important;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: rgb(141, 151, 182) !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.timerButton {
+  margin:5px;
+  background-color: rgb(150, 95, 122) !important;
+}
+
+.formButton {
+  margin:5px;
+  background-color: rgb(150, 135, 95) !important;
+}
+
+.seshButton {
+  margin:5px;
+  background-color: rgb(102, 95, 150) !important;
+}
+
+.taskForm input{
+  background-color: whitesmoke;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+} 
