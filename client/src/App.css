@@ -2,12 +2,42 @@ body {
   background-color: #c2c2c2;
 }
 
-.btn, .btn:hover, .btn:active, .btn:visited {
-  background-color: rgb(153, 182, 141) !important;
+#sessionsUI {
+  background-color: #a09f6c;
+}
+
+.sessionFormInner {
+  padding: 2.5em;
+  background-color: #9dcbcf;
+}
+
+.taskFormInner {
+  padding: 2.5em;
+  display:flex;
+  width:100%;
+  background-color: #95b4b8;
+}
+
+.taskForm {
+  margin-left:10px;
+  width:9%;
+}
+
+.saveDiv {
+  width:100%;
+  background-color: #69a58e;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: rgb(141, 151, 182) !important;
+}
+
+.form-control {
+  margin:5px;
+}
+
+.form-group{
+  margin-bottom:0px !important; 
 }
 
 .App {
@@ -19,9 +49,25 @@ body {
   background-color: rgb(150, 95, 122) !important;
 }
 
-.formButton {
-  margin:5px;
-  background-color: rgb(150, 135, 95) !important;
+.taskButton:hover {
+  background-color: rgb(167, 149, 52) !important;
+}
+
+.taskButton {
+  border-radius:0 !important;
+  width:50%;
+  background-color: rgb(192, 167, 97) !important;
+}
+
+.saveButton:hover {
+  width:100%;
+  background-color: rgb(97, 131, 90) !important;
+}
+
+.saveButton {
+  border-radius:0px !important;
+  width:100%;
+  background-color: rgb(172, 132, 140) !important;
 }
 
 .seshButton {
@@ -32,22 +78,3 @@ body {
 .taskForm input{
   background-color: whitesmoke;
 }
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
-} 

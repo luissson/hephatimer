@@ -40,33 +40,30 @@ export class SessionForm extends React.Component {
   addTaskInputs(i){
     return (
       <div key={i} className="taskForm" id={`tasksForm_${i}`}>
+        <label>Task {i+1}</label>
         <input
+            className="form-control taskInput"
             type="text"
-            placeholder="Task Name"
+            placeholder="Name"
             name="taskName"
         />
-        <br/>
-
         <input
+            className="form-control taskInput"
             type="text"
-            placeholder="Task Category"
+            placeholder="Category"
             name="taskCategory"
         />
-        <br/>
-
         <input
+            className="form-control taskInput"
             type="text"
-            placeholder="Task Description"
+            placeholder="Description"
             name="taskDescription"
         />
-        <br/>
-        <br/>
       </div>
     );
   }
 
   objectifySession(formData) {
-    // TODO: may want to convert directly to mongoose model here
     let sessionData = formData.target;
 
     var session = new Session(
@@ -101,34 +98,45 @@ export class SessionForm extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-        <button className="btn formButton" onClick={this.addTask}>+Task</button>
-        <button className="btn formButton" onClick={this.removeTask}>-Task</button>
         <form onSubmit={this.onSubmit}>
-        <input
-            type="text"
-            placeholder="Session Name"
-            name="sessionName"
-        />
-        <br/>
+          <div className="row">
+          <button type="submit" className="btn saveButton">Save</button>
+          </div>
+          <div className="sessionFormInner row form-group">
+            <div className="col">
+              <label>Session</label>
+              <input
+                  className="form-control sessionInput"
+                  type="text"
+                  placeholder="Name"
+                  name="sessionName"
+              />
+              <input
+                  className="form-control sessionInput"
+                  type="text"
+                  placeholder="Category"
+                  name="sessionCategory"
+              />
+              <input
+                  className="form-control sessionInput"
+                  type="text"
+                  placeholder="Description"
+                  name="sessionDescription"
+              />
+            </div>
+          </div>
 
-        <input
-            type="text"
-            placeholder="Session Category"
-            name="sessionCategory"
-        />
-        <br/>
-
-        <input
-            type="text"
-            placeholder="Session Description"
-            name="sessionDescription"
-        />
-        <br/>
-        <br/>
-
-        {this.tasks()}
-        <button type="submit" className="btn formButton">Save</button>
+          <div className="row form-group">
+              <div className="col taskFormInner">
+                {this.tasks()}
+              </div>
+          </div>
         </form>
+
+        <div className="row">
+        <button className="btn taskButton" onClick={this.addTask}>+Task</button>
+        <button className="btn taskButton" onClick={this.removeTask}>-Task</button>
+        </div>
       </React.Fragment>
         );
 		}

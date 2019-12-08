@@ -11,21 +11,12 @@ import { Helmet } from 'react-helmet'
 class App extends Component {
   constructor(props){
     super(props);
-    var testSession = new Session("testSession", "A test session", "A session for testing");
-    var task_one = new Task("Task One", "Test", "A test task.");
-    var task_two = new Task("Task Two", "Test", "A test task.");
-    var task_three = new Task("Task Three", "Test", "A test task.");
-    var test_tasks = [];
-    test_tasks.push(task_one, task_two, task_three);
-    testSession.setTasks(test_tasks);
 
     this.state = {
       sessionsLoaded: false,
       sessions: [],
       active_timer: [],
     };
-
-    // this.state.sessions.push(testSession); // add a test session by default for testing
   }
 
   componentDidMount() {
@@ -72,7 +63,7 @@ class App extends Component {
 
     var active_timer =
     <TimerUI
-      data={selectedSession} // TODO: fetch from mongodb w query
+      data={selectedSession}
       onClick={this.handleTimerUIClick}
     />;
     this.setState({active_timer: active_timer})
@@ -132,16 +123,26 @@ class App extends Component {
         </Helmet>
 
         <div className="App">
+          <div className="row">
+            <div className="col">
+              <SessionForm 
+                  data={this.state.sessions}
+                  onSubmit={this.handleSessionFormSubmit}
+              />
+            </div>
+          </div>
 
-          <SessionForm 
-              data={this.state.sessions}
-              onSubmit={this.handleSessionFormSubmit}
-            />
+          <div className="row">
+            <div className="col">
+              {this.showSessionUI()}
+            </div>
+          </div>
 
-          {this.showSessionUI()}
-
-          {this.showTimerUI()}
-
+          <div className="row">
+            <div className="col">
+              {this.showTimerUI()}
+            </div>
+          </div>
         </div>
 
       </>

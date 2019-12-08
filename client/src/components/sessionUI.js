@@ -84,9 +84,14 @@ export class SessionUI extends React.Component{
 
   render() {
     return(
-      <div id="sessionsUI">
-        {this.sessions()}
-        {this.stopwatches()}
+      <div className="sessionsUI">
+        <div className="row">
+          {this.sessions()}
+        </div>
+
+        <div className="row">
+          {this.stopwatches()}
+        </div>
       </div>
     )
   }
