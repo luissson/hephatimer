@@ -85,6 +85,7 @@ export class SessionUI extends React.Component{
   render() {
     return(
       <div className="sessionsUI">
+        <h5>Saved Sessions:</h5> 
         <div className="row">
           {this.sessions()}
         </div>

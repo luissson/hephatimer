@@ -55,25 +55,26 @@ class App extends Component {
     this.setActiveTimer(sessionID);
   }
 
+  handleTimerUIClick = () => {
+    console.log("end from App.js");
+    this.setState({active_timer: []})
+  }
+
   setActiveTimer = sessionID => {
     // want to attach stopwatch to session here
     // always create a fresh stopwatch, kill prev instance if exists
     var selectedSession = this.state.sessions[sessionID];
     selectedSession.stopwatch = new Stopwatch();
-
-    var active_timer =
-    <TimerUI
-      data={selectedSession}
-      onClick={this.handleTimerUIClick}
-    />;
+    let active_timer =
+      [<TimerUI
+        data={selectedSession}
+        onClick={this.handleTimerUIClick}
+      />];
     this.setState({active_timer: active_timer})
   }
 
   showTimerUI = () => {
-    if(this.state.active_timer)
-    {
-      return this.state.active_timer;
-    }
+    return this.state.active_timer;
   }
 
   ConvertSessionModel = (seshModel) => {
@@ -124,27 +125,29 @@ class App extends Component {
 
         <div className="App">
           <div className="row">
+
             <div className="col">
+              <h5>Session Form:</h5> 
               <SessionForm 
                   data={this.state.sessions}
                   onSubmit={this.handleSessionFormSubmit}
               />
             </div>
-          </div>
 
-          <div className="row">
             <div className="col">
-              {this.showSessionUI()}
+              <div className="row">
+                <div className="col">
+                  {this.showSessionUI()}
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="row">
             <div className="col">
               {this.showTimerUI()}
             </div>
+
           </div>
         </div>
-
       </>
     );
   }

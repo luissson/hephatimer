@@ -7,9 +7,8 @@ export class TimerUI extends React.Component {
   constructor(props) {
     super(props);
 
-    let session = this.props.data;
     this.state = ({
-        session: session,
+        session: this.props.data,
         current_time: 0,
     });
   }
@@ -40,10 +39,11 @@ export class TimerUI extends React.Component {
           'Content-Type':'application/json',
         },
         body:JSON.stringify({
-          session:this.state.session,
+          session:session,
         })
       })
-        .then(this.checkStatus);
+        .then(this.checkStatus)
+        .then(this.props.onClick);
   }
   
   update = () => {
@@ -54,6 +54,7 @@ export class TimerUI extends React.Component {
   render() {
     return (
       <div>
+        <h5>Stopwatch:</h5> 
         <h1>{this.state.current_time/1000}</h1>
         <button className="btn timerButton" onClick={this.start}>Start</button>
         <button className="btn timerButton" onClick={this.stop}>Stop</button>

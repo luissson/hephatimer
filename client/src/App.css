@@ -12,15 +12,13 @@ body {
 }
 
 .taskFormInner {
-  padding: 2.5em;
-  display:flex;
-  width:100%;
+  padding:2.5em;
   background-color: #95b4b8;
 }
 
 .taskForm {
   margin-left:10px;
-  width:9%;
+  width:100%;
 }
 
 .saveDiv {

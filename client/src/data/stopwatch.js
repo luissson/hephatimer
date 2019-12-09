@@ -55,27 +55,25 @@ export class Stopwatch {
     if(this.interval !== undefined)
     {
       this.stop();
-
-      let endDate = new Date();
-      this.duration = (endDate.getTime() - this.startDate.getTime())/1000;
-      this.endDate = endDate;
-
-      let start = this.startDate;
-      let end = this.endDate;
-      let duration = this.duration;
-
-      this.startDate = undefined;
-      this.endDate = undefined;
-      this.duration = undefined;
-
-      this.time = 0;
-      this.offset = 0;
-      this.startTime = 0
-
-      return [start, end, duration];
     }
 
-    return {};
+    let endDate = new Date();
+    this.duration = (endDate.getTime() - this.startDate.getTime())/1000;
+    this.endDate = endDate;
+
+    let start = this.startDate;
+    let end = this.endDate;
+    let duration = this.duration;
+
+    // this.startDate = undefined;
+    // this.endDate = undefined;
+    // this.duration = undefined;
+
+    // this.time = 0;
+    // this.offset = 0;
+    // this.startTime = 0
+
+    return [start, end, duration];
   }
 
   update = () => {

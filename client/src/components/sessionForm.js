@@ -99,9 +99,6 @@ export class SessionForm extends React.Component {
 		return (
 			<React.Fragment>
         <form onSubmit={this.onSubmit}>
-          <div className="row">
-          <button type="submit" className="btn saveButton">Save</button>
-          </div>
           <div className="sessionFormInner row form-group">
             <div className="col">
               <label>Session</label>
@@ -126,17 +123,22 @@ export class SessionForm extends React.Component {
             </div>
           </div>
 
-          <div className="row form-group">
-              <div className="col taskFormInner">
+          <div className="taskFormInner row form-group">
+              <div className="col">
                 {this.tasks()}
               </div>
           </div>
+
+          <div className="row">
+            <div className="btn taskButton" onClick={this.addTask}>+Task</div>
+            <div className="btn taskButton" onClick={this.removeTask}>-Task</div>
+          </div>
+
+          <div className="row">
+            <button type="submit" className="btn saveButton">Save</button>
+          </div>
         </form>
 
-        <div className="row">
-        <button className="btn taskButton" onClick={this.addTask}>+Task</button>
-        <button className="btn taskButton" onClick={this.removeTask}>-Task</button>
-        </div>
       </React.Fragment>
         );
 		}

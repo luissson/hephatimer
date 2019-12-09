@@ -63,7 +63,7 @@ export class Session {
     }
 
     toString = () => {
-        let sessionInfo = `session: name: ${this.name}, id: ${this.id}, category: ${this.category}, description: ${this.description}`;
+        let sessionInfo = `session: name: ${this.sessionName}, category: ${this.sessionCategory}, description: ${this.sessionDescription}`;
         var taskInfo = '; tasks: ';
         for(var task of this.tasks){
             taskInfo += task.toString();
@@ -100,6 +100,6 @@ export class Task {
     }
 
     toString() {
-        return `name: ${this.taskName}, id: ${this.taskId}, category: ${this.taskCategory}, description: ${this.taskDescription}`;
+        return `name: ${this.taskName}, category: ${this.taskCategory}, description: ${this.taskDescription}`;
     }
 }
