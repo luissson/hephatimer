@@ -13,7 +13,7 @@ class Stopwatch {
       this.interval = undefined;
     }
   
-  start = interval => {
+  start(interval) {
     if(this.interval === undefined)
     {
       if(interval === undefined){
@@ -32,7 +32,7 @@ class Stopwatch {
     }
   };
 
-  stop = () => {
+  stop() {
     if(this.interval !== undefined)
     {
       clearInterval(this.interval);
@@ -51,7 +51,7 @@ class Stopwatch {
     }
   }
 
-  end = () => {
+  end() {
     if(this.interval !== undefined)
     {
       this.stop();
@@ -78,7 +78,7 @@ class Stopwatch {
     return {};
   }
 
-  update = () => {
+  update() {
     let now = Date.now();
     let offset = this.offset;
     let delta = now - offset;

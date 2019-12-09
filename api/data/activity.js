@@ -16,21 +16,20 @@ class Session {
 
     }
 
-    pauseTimer = () => {
+    pauseTimer() {
         let current_time = this.stopwatch.stop();
         this.pauses.push(Date.now())
         return current_time;
     };
 
-    startTimer = interval => {
+    startTimer(interval) {
         this.stopwatch.start(interval);
 
         let startTime = this.stopwatch.startTime;
         startTime = startTime & startTime; // conver to 32bit
-        this.trackId = parseInt(this.id + "" + startTime); // make 64 bit num from concat 2 32bits
     };
 
-    endTimer = () => {
+    endTimer(){
         var summary = this.stopwatch.end();
         this.start = summary[0];
         this.end = summary[1];
@@ -38,11 +37,11 @@ class Session {
         return this;
     };
 
-    updateTimer = () => {
+    updateTimer() {
         return this.stopwatch.update();
     };
 
-    toString = () => {
+    toString() {
         let sessionInfo = `session: name: ${this.sessionName}, category: ${this.sessionCategory}, description: ${this.sessionDescription}`;
         var taskInfo = '; tasks: ';
         for(var task of this.tasks){
@@ -60,7 +59,7 @@ class Task {
         this.taskDescription = description;
     };
 
-    save = () => {
+    save(){
         return true;
     };
 
