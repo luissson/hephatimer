@@ -3,8 +3,12 @@
 Named for the greek god Hephaestus (the greek god that did real work), Hephatimer is a task-time tracking application for users who want to break down how they spend their time with a fine granularity.
 
 # Getting Started
+* Clone Repository
+* in /client/, run npm install
+* in /api/, run npm install
 
 # Prerequesites
+* Node
 
 # Features
 

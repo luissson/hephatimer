@@ -3,12 +3,9 @@ var Stopwatch = require("./stopwatch");
 class Session {
     constructor(name, category, description)
     {
-        this.name = name;
-        this.category = category;
-        this.description = description;
-
-        this.id = this.hashName(this.name);
-        this.trackId = undefined;
+        this.sessionName = name;
+        this.sessionCategory = category;
+        this.sessionDescription = description;
 
         this.stopwatch = new Stopwatch();
         this.start = undefined;
@@ -19,30 +16,11 @@ class Session {
 
     }
 
-    hashName = name => {
-        // code taken from
-        // https://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
-        var hash = 0;
-        if (name.length == 0) return hash;
-
-        for(let i=0; i< name.length; i++){
-            let char = name.charCodeAt(i);
-            hash = ((hash<<5)-hash)+char;
-            hash = hash & hash; // convert to 32bit
-        }
-
-        return hash;
-    }
-
-    setTasks(tasks) {
-        this.tasks = tasks;
-    };
-
     pauseTimer = () => {
         let current_time = this.stopwatch.stop();
         this.pauses.push(Date.now())
         return current_time;
-    }
+    };
 
     startTimer = interval => {
         this.stopwatch.start(interval);
@@ -62,10 +40,10 @@ class Session {
 
     updateTimer = () => {
         return this.stopwatch.update();
-    }
+    };
 
     toString = () => {
-        let sessionInfo = `session: name: ${this.name}, id: ${this.id}, category: ${this.category}, description: ${this.description}`;
+        let sessionInfo = `session: name: ${this.sessionName}, category: ${this.sessionCategory}, description: ${this.sessionDescription}`;
         var taskInfo = '; tasks: ';
         for(var task of this.tasks){
             taskInfo += task.toString();
@@ -80,30 +58,15 @@ class Task {
         this.taskName = name;
         this.taskCategory = category;
         this.taskDescription = description;
-    }
+    };
 
     save = () => {
         return true;
-    }
-
-    hashName = name => {
-        // code taken from
-        // https://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
-        var hash = 0;
-        if (name.length == 0) return hash;
-
-        for(let i=0; i< name.length; i++){
-            let char = name.charCodeAt(i);
-            hash = ((hash<<5)-hash)+char;
-            hash = hash & hash;
-        }
-
-        return hash;
-    }
+    };
 
     toString() {
-        return `name: ${this.taskName}, id: ${this.taskId}, category: ${this.taskCategory}, description: ${this.taskDescription}`;
-    }
+        return `name: ${this.taskName}, category: ${this.taskCategory}, description: ${this.taskDescription}`;
+    };
 }
 
 module.exports = {Session, Task};
