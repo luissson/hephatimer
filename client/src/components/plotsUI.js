@@ -6,11 +6,12 @@ export class PlotsUI extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { dataLoaded:false, data:[] };
+        this.state = { show:this.props.show, dataLoaded:false, data:[] };
 
         this.showData = this.showData.bind(this);
         this.getData = this.getData.bind(this);
         this.buildPlot = this.buildPlot.bind(this);
+        this.toggleHidden = this.toggleHidden.bind(this);
     };
 
     componentDidMount(){
@@ -39,9 +40,17 @@ export class PlotsUI extends React.Component {
             .then(r=>r.json())
             .then(r => {
                 stopwatches = r.session[0].timers;
-                this.setState({dataLoaded:true, data:stopwatches});
+                if(stopwatches.length > 0){
+                    this.setState({dataLoaded:true, data:stopwatches});
+                }
             })
         }
+    }
+
+    toggleHidden() {
+        console.log("Toggle hidden");
+        var css = (this.state.show === "") ? "show" : "";
+        this.setState({"show":css});
     }
 
     buildPlot(){
@@ -106,7 +115,8 @@ export class PlotsUI extends React.Component {
             .attr("transform", function(d) {
                 return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
             .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
-            .attr("height", function(d) { return height - y(d.length); });
+            .attr("height", function(d) { return height - y(d.length); })
+            .style("fill", "#69b3a2")
         
         // add the x Axis
         svg.append("g")
@@ -120,11 +130,11 @@ export class PlotsUI extends React.Component {
 
     render() {
         return (
-        <div id="plotDiv" ref="plotDiv">
+        <div>
             <h5>Plots:</h5> 
-            <div>
+            <button className="btn btn-primary plotButton" onClick={this.toggleHidden}>{this.props.session.sessionName} Plot </button>
+            <div className={this.state.show} id="plotDiv">
                 {this.showData()}
-                {this.props.session.sessionName} Plot
             </div>
         </div>
         );

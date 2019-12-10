@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   setActivePlot(){
-    let active_plot = <PlotsUI session={this.state.active_session}/>;
+    let active_plot = <PlotsUI show="show" session={this.state.active_session}/>;
     this.setState({active_plot: active_plot});
   }
 
@@ -127,7 +127,7 @@ class App extends Component {
         <div className="App">
           <div className="row">
 
-            <div className="col">
+            <div className="col-4">
               <h5>Session Form:</h5> 
               <SessionForm 
                   data={this.state.sessions}
@@ -135,7 +135,7 @@ class App extends Component {
               />
             </div>
 
-            <div className="col">
+            <div className="col-4">
               <div className="row">
                 <div className="col">
                   <SessionUI 
@@ -146,7 +146,7 @@ class App extends Component {
               </div>
             </div>
 
-            <div className="col">
+            <div className="col-4">
               {this.state.active_timer}
             </div>
 
@@ -157,7 +157,6 @@ class App extends Component {
               {this.state.active_plot}
             </div>
           </div>
-
         </div>
       </>
     );

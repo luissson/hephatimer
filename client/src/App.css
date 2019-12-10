@@ -26,10 +26,6 @@ body {
   background-color: #69a58e;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-  background-color: rgb(141, 151, 182) !important;
-}
-
 .form-control {
   margin:5px;
 }
@@ -64,9 +60,17 @@ body {
 
 .saveButton {
   border-radius:0px !important;
+  border:1px solid black;
   width:100%;
   background-color: rgb(172, 132, 140) !important;
 }
+
+.plotButton {
+  border-radius:0px !important;
+  width:100%;
+  background-color: rgb(140, 141, 231) !important;
+}
+
 
 .seshButton {
   margin:5px;
@@ -75,4 +79,50 @@ body {
 
 .taskForm input{
   background-color: whitesmoke;
+}
+
+#plotDiv {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual#plotDiv */
+#plotDiv {
+  background-color:rgb(226, 226, 226);
+  visibility: hidden;
+  text-align: center;
+  position: absolute;
+  border:solid 1px black;
+  top:-450px;
+  left:0px;
+  z-index: 1;
+}
+
+/* Popup arrow */
+#plotDiv ::after {
+  content: "";
+  position: absolute;
+}
+
+/* Toggle this class - hide and show the#plotDiv */
+.show {
+  visibility: visible !important;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the#plotDiv) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }
