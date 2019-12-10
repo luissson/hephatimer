@@ -89,10 +89,6 @@ export class SessionUI extends React.Component{
         <div className="row">
           {this.sessions()}
         </div>
-
-        <div className="row">
-          {this.stopwatches()}
-        </div>
       </div>
     )
   }

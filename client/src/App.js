@@ -4,6 +4,7 @@ import {Session, Task} from './data/activity.js'
 import {SessionForm} from './components/sessionForm.js'
 import {SessionUI} from './components/sessionUI.js'
 import {TimerUI} from './components/timerUI.js'
+import {PlotsUI} from './components/plotsUI.js'
 import { Stopwatch } from './data/stopwatch';
 import { Helmet } from 'react-helmet'
 
@@ -16,6 +17,8 @@ class App extends Component {
       sessionsLoaded: false,
       sessions: [],
       active_timer: [],
+      active_plot:[],
+      active_session: [],
     };
   }
 
@@ -52,24 +55,28 @@ class App extends Component {
 
   handleSessionUISubmit = sessionID => {
     // make TimerUI for session obj
-    this.setActiveTimer(sessionID);
+    this.setState({active_timer: [], active_plot:[], active_session: this.state.sessions[sessionID]}, () => {
+      this.setActiveTimer();
+      this.setActivePlot();
+    });
   }
 
   handleTimerUIClick = () => {
-    console.log("end from App.js");
-    this.setState({active_timer: []})
+    this.setState({active_timer: [], active_plot:[]})
   }
 
-  setActiveTimer = sessionID => {
-    // want to attach stopwatch to session here
-    // always create a fresh stopwatch, kill prev instance if exists
-    var selectedSession = this.state.sessions[sessionID];
-    selectedSession.stopwatch = new Stopwatch();
+  setActivePlot(){
+    let active_plot = <PlotsUI session={this.state.active_session}/>;
+    this.setState({active_plot: active_plot});
+  }
+
+  setActiveTimer() {
     let active_timer =
-      [<TimerUI
-        data={selectedSession}
+      <TimerUI
+        data={this.state.active_session}
         onClick={this.handleTimerUIClick}
-      />];
+      />;
+
     this.setState({active_timer: active_timer})
   }
 
@@ -110,12 +117,6 @@ class App extends Component {
       return sessions;
   }
 
-  showSessionUI = () => {
-    if(this.state.sessionsLoaded){
-      return <SessionUI data = {this.state.sessions} onClick={this.handleSessionUISubmit}/>;
-    }
-  }
-
   render() {
     return (
       <>
@@ -137,16 +138,26 @@ class App extends Component {
             <div className="col">
               <div className="row">
                 <div className="col">
-                  {this.showSessionUI()}
+                  <SessionUI 
+                    data = {this.state.sessions}
+                    onClick={this.handleSessionUISubmit}
+                   />
                 </div>
               </div>
             </div>
 
             <div className="col">
-              {this.showTimerUI()}
+              {this.state.active_timer}
             </div>
 
           </div>
+
+          <div className="row">
+            <div className="col">
+              {this.state.active_plot}
+            </div>
+          </div>
+
         </div>
       </>
     );
