@@ -55,21 +55,25 @@ export class PlotsUI extends React.Component {
 
     buildPlot(){
         var startDates = [];
+        var startStrings = [];
 
         for(let i = 0; i < this.state.data.length; i++){
             startDates.push(new Date(this.state.data[i].startDate));
+            startStrings.push(this.state.data[i].startDate);
         }
 
         var margin = {top: 10, right: 30, bottom: 30, left: 40},
         width = 860 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
-        
-        // parse the date / time
-        var parseDate = d3.timeParse("%d-%m-%Y");
+
+        // get the data
+        var data = startDates;
+        var minDate = new Date(Math.min.apply(null, data) - 0.75e+8);
+        var maxDate = new Date(minDate.getTime() + 2 * 6.04e+8);
 
         // set the ranges
         var x = d3.scaleTime()
-                .domain([new Date(2019, 10, 1), new Date(2020, 1, 1)])
+                .domain([minDate, maxDate])
                 .rangeRound([0, width]);
         var y = d3.scaleLinear()
                 .range([height, 0]);
@@ -97,8 +101,6 @@ export class PlotsUI extends React.Component {
                 .attr("transform", 
                     "translate(" + margin.left + "," + margin.top + ")");
             
-        // get the data
-        var data = startDates;
         
         // group the data for the bars
         var bins = histogram(data);

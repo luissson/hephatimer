@@ -62,7 +62,11 @@ class App extends Component {
   }
 
   handleTimerUIClick = () => {
-    this.setState({active_timer: [], active_plot:[]})
+    let active_session = this.state.active_session;
+    active_session.stopwatch = new Stopwatch();
+    this.setState({active_session: active_session, active_plot:[]}, () => {
+      this.setActivePlot();
+    });
   }
 
   setActivePlot(){
