@@ -55,7 +55,7 @@ export class TimerUI extends React.Component {
     return (
       <div>
         <h5>Stopwatch:</h5> 
-        <h1>{this.state.current_time/1000}</h1>
+        <h1>{Math.round(this.state.current_time/1000)}</h1>
         <button className="btn timerButton" onClick={this.start}>Start</button>
         <button className="btn timerButton" onClick={this.stop}>Stop</button>
         <button className="btn timerButton" onClick={this.end}>End</button>
